@@ -42,16 +42,17 @@ function initialize() {
         ['Four', 20.536403538438528, 72.95574188232422]
     ];
 	    // Loop through our array of markers & place each one on the map  
-//    for( i = 0; i < markers.length; i++ ) {
-//        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-//        bounds.extend(position);
-//        marker = new google.maps.Marker({
-//				position: position,
-//				map: map,
-//				title: markers[i][0]
-//			});
-//			map.fitBounds(bounds);
-//		}
+   for( index in markers ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+				position: position,
+				map: map,
+				title: markers[i][0]
+				});
+//				map.fitBounds(bounds);
+				bounds.extend(position);
+			}
 
 
 //      use below code to fit the map as per the markers but getting error for lat under review
