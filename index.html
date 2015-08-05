@@ -55,15 +55,16 @@
          			}
          		
          	// Load a GeoJSON from the same server as our demo.
-           map.data.loadGeoJson('./gujrat.json');
-         
+			var jsonName = "./gujrat.json";
+           map.data.loadGeoJson(jsonName);
+         /*
             google.maps.event.addListener(map, 'center_changed', function() {
              // 2 seconds after the center of the map has changed, pan back to the marker.
              window.setTimeout(function() {
                map.panTo(mapOptions.center);
              }, 2000);
            });
-          
+          */
            
            // Add some style.
            map.data.setStyle(function(feature) {						//color area as per 'color' property
@@ -96,9 +97,15 @@
            
 		   var districtName;
 		   map.data.addListener('click', function(event) {				//get click on map
+		   map.data.forEach(function(feature) {
+			//If you want, check here for some constraints.
+			map.data.remove(feature);
+
+			});
 		   districtName = event.feature.getProperty('name'); 			//get the district name
 		   console.log(districtName);
-		   map.data.remove(feature);
+		   map.data.setStyle({});
+		   map.data.setStyle({visible: false});
 //		   map.data.remove('./gujrat.json');
 		   map.data.loadGeoJson('./Bhuj.json');						//remove geoJSON experiment
 		   });
