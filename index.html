@@ -20,7 +20,7 @@
          position: absolute;
          left: 30px;
          }
-         .gm-style-iw + div {display: none;}
+         .gm-style-iw + div {display: none;} /* remove 'x' from infowindow*/
       </style>
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
       <script>
@@ -32,17 +32,16 @@
          	mapTypeId: google.maps.MapTypeId.TERRAIN,
            };
          function initialize() {
-           // Create a simple map.
+           // Create a map object.
            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
          
-               // Multiple Markers
-             var markers = [
+             var markers = [											//Multiple Markers
                  ['One', 23.66874838154079, 68.16287040710449],
                  ['Two', 24.726875 , 72.075806],
                  ['Three', 22.87115352918744, 74.47460174560547],
                  ['Four', 19.993998 , 73.174438]
              ];
-         	    // Loop through our array of markers & place each one on the map  
+         	    // Loop through our array of markers & place each one on the map  and bound the map
             for( index in markers ) {
                  var position = new google.maps.LatLng(markers[index][1], markers[index][2]);
                  bounds.extend(position);
@@ -54,15 +53,12 @@
          				});
          				map.fitBounds(bounds.extend(position));
          			}
-         
-         
          		
          	// Load a GeoJSON from the same server as our demo.
            map.data.loadGeoJson('./gujrat.json');
          
             google.maps.event.addListener(map, 'center_changed', function() {
-             // 2 seconds after the center of the map has changed, pan back to the
-             // marker.
+             // 2 seconds after the center of the map has changed, pan back to the marker.
              window.setTimeout(function() {
                map.panTo(mapOptions.center);
              }, 2000);
@@ -70,7 +66,7 @@
           
            
            // Add some style.
-           map.data.setStyle(function(feature) {
+           map.data.setStyle(function(feature) {						//color area as per 'color' property
                return /** @type {google.maps.Data.StyleOptions} */({
                fillColor: feature.getProperty('color'),
          //		fillColor: 'blue',
@@ -79,32 +75,33 @@
          	 }); 
          	  // [START snippet]
            // Set mouseover event for each feature.
-           map.data.addListener('mouseover', function(event) {
-         
-         
+           map.data.addListener('mouseover', function(event) {			//get latlang on mouseover
          		var lat = event.latLng.lat();
                  lng = event.latLng.lng();
                  latLng = event.latLng;
          		//new codes for mouse move
-         		var contentString = event.feature.getProperty('name');
-         		var infowindow = new google.maps.InfoWindow({
+         		var contentString = event.feature.getProperty('name'); //String to show in infowindow
+         		var infowindow = new google.maps.InfoWindow({			//Create infowindow
          		content: contentString,
          		position: latLng, 
          		maxWidth: 420
          		});
-         		infowindow.open(map);
+         		infowindow.open(map);									//open infowindow
          		//infowindow.close();
-         		map.data.addListener('mouseout', function(event){
+         		map.data.addListener('mouseout', function(event){		//close infowindow on mouseout
          		openedInfoWindow = null; 
          		infowindow.close();
-         		
-         		//console.log(event.feature.getProperty('color'));
          		}); 
            });
            
+		   var districtName;
+		   map.data.addListener('click', function(event) {				//get click on map
+		   districtName = event.feature.getProperty('name'); 			//get the district name
+		   map.data.loadGeoJson('./gujrat.json');						//remove geoJSON experiment
+		   }
          }
          
-         google.maps.event.addDomListener(window, 'load', initialize);
+         google.maps.event.addDomListener(window, 'load', initialize);	//load map
          
              
       </script>
