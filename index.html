@@ -97,8 +97,11 @@
 		   var districtName;
 		   map.data.addListener('click', function(event) {				//get click on map
 		   districtName = event.feature.getProperty('name'); 			//get the district name
-		   map.data.loadGeoJson('./gujrat.json');						//remove geoJSON experiment
-		   }
+		   console.log(districtName);
+		   map.data.remove(feature);
+//		   map.data.remove('./gujrat.json');
+		   map.data.loadGeoJson('./Bhuj.json');						//remove geoJSON experiment
+		   });
          }
          
          google.maps.event.addDomListener(window, 'load', initialize);	//load map
