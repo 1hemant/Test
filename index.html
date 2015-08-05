@@ -20,6 +20,7 @@
       position: absolute;
       left: 30px;
 	  }
+	  
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
@@ -37,21 +38,22 @@ function initialize() {
       // Multiple Markers
     var markers = [
         ['One', 23.66874838154079, 68.16287040710449],
-        ['Two', 24.415285854368054, 70.56982040405273],
+        ['Two', 24.726875 , 72.075806],
         ['Three', 22.87115352918744, 74.47460174560547],
-        ['Four', 20.536403538438528, 72.95574188232422]
+        ['Four', 19.993998 , 73.174438]
     ];
 	    // Loop through our array of markers & place each one on the map  
    for( index in markers ) {
-        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        var position = new google.maps.LatLng(markers[index][1], markers[index][2]);
         bounds.extend(position);
         marker = new google.maps.Marker({
 				position: position,
 				map: map,
-				title: markers[i][0]
+				title: markers[index][0],
+				visible: false
 				});
-//				map.fitBounds(bounds);
-				bounds.extend(position);
+				map.fitBounds(bounds.extend(position));
+//				bounds.extend(position);
 			}
 
 
