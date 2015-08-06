@@ -13215,7 +13215,7 @@
                 ]
             },
             "properties": {
-                "color": "GreenYello",
+                "color": "purple",
                 "name": "Jamnagar"
             }
         },
@@ -22024,7 +22024,7 @@
             },
             "properties": {
                 "color": "Khaki",
-                "name": "Amreli"
+                "name": "Devbhoomi Dwarka"
             }
         },
         {
@@ -22086,7 +22086,7 @@
             },
             "properties": {
                 "color": "Levender",
-                "name": "Amreli",
+                "name": "Devbhoomi Dwarka",
                 "rank": "20"
             }
         },
@@ -22161,7 +22161,7 @@
             },
             "properties": {
                 "color": "LawnGreen",
-                "name": "Amreli"
+                "name": "Devbhoomi Dwarka"
             }
         },
         {
@@ -22379,7 +22379,7 @@
             },
             "properties": {
                 "color": "LightBlue",
-                "name": "Amreli"
+                "name": "Devbhoomi Dwarka"
             }
         },
         {
