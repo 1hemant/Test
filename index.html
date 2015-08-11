@@ -15,6 +15,7 @@
         var districtName;
         var citiesName; //= "./json/AnandCities.json";
         var bounds = new google.maps.LatLngBounds();
+		var infowindow = new google.maps.InfoWindow();
         var jsonName = "./json/gujrat.json"; // Load a GeoJSON from the same server as our demo.
         var mapOptions = {
             zoom: 8,
@@ -91,29 +92,27 @@
 
                 });
                 map.data.loadGeoJson('./' + 'json/' + event.feature.getProperty('name') + '.json'); //remove geoJSON experiment
-                loadData();
-                console.log("1");
+                
 				citiesName = './' + 'json/' + event.feature.getProperty('name') +'Cities'+ '.json';
-				console.log(citiesName);
+				loadData();
+				return citiesName;
             });
-
 
             // L O A D   D A T A   F O R   C I T I E S
             function loadData() {
                 $.getJSON(citiesName, function(jsonCities) {
-
+					console.log(jsonCities);
                     $.each(jsonCities.cities, function(key, cityData) {
-                        console.log("1.5");
 
                         var latLng = new google.maps.LatLng(cityData.lat, cityData.lng);
-                        console.log("2");
+						
                         var marker1 = new google.maps.Marker({
                             position: latLng,
                             map: map,
                             title: cityData.title
                         });
 
-                        var details = "load data"; //cityData.website + ", " + cityData.phone + ".";
+                        var details = cityData.info;
 
                         bindInfoWindow(marker1, map, infowindow, details);
 
