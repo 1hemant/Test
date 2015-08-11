@@ -98,12 +98,18 @@
 				return citiesName;
             });
 
+        }
+
+        function reloadMap() {
+            initialize();
+        };
+		
             // L O A D   D A T A   F O R   C I T I E S
             function loadData() {
                 $.getJSON(citiesName, function(jsonCities) {
-					console.log(jsonCities);
+//					console.log(jsonCities);
                     $.each(jsonCities.cities, function(key, cityData) {
-
+						console.log(cityData);
                         var latLng = new google.maps.LatLng(cityData.lat, cityData.lng);
 						
                         var marker1 = new google.maps.Marker({
@@ -120,11 +126,6 @@
 
                 });
             }
-        }
-
-        function reloadMap() {
-            initialize();
-        };
 
         function bindInfoWindow(marker1, map, infowindow, strDescription) {
             google.maps.event.addListener(marker1, 'click', function() {
