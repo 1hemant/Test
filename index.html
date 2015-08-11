@@ -91,12 +91,14 @@
 
                 });
                 map.data.loadGeoJson('./' + 'json/' + event.feature.getProperty('name') + '.json'); //remove geoJSON experiment
-                loadData();
+                
                 console.log("1");
 				citiesName = './' + 'json/' + event.feature.getProperty('name') +'Cities'+ '.json';
 				console.log(citiesName);
+				loadData();
+				return citiesName;
             });
-
+				console.log(citiesName);
 
             // L O A D   D A T A   F O R   C I T I E S
             function loadData() {
